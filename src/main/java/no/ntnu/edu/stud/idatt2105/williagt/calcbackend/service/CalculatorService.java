@@ -1,5 +1,6 @@
 package no.ntnu.edu.stud.idatt2105.williagt.calcbackend.service;
 
+import no.ntnu.edu.stud.idatt2105.williagt.calcbackend.model.Calculations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -12,5 +13,10 @@ public class CalculatorService {
 
     public String getHelloMessage(){
         return "Hello and welcome!";
+    }
+
+    public double calculateExpression(String expression){
+        //TODO add logger stuff
+        return Calculations.calculate(expression);
     }
 }

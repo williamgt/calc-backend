@@ -12,17 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class CalculatorController {
 
     @Autowired
-    private CalculatorService service;
+    private CalculatorService service; //Dependency injection
 
     Logger logger = LoggerFactory.getLogger(CalculatorController.class); //Setting up logger for calculator controller
 
     @RequestMapping("/")
     public String helloWorld(){
-        logger.trace("Tracing");
-        logger.debug("Debugging");
+        //logger.trace("Tracing");
+        logger.info("Sending hello message to user");
+        /*logger.debug("Debugging");
         logger.info("Info");
         logger.warn("Warning");
-        logger.error("Error lol");
+        logger.error("Error lol");*/
 
         return this.service.getHelloMessage();
     }
