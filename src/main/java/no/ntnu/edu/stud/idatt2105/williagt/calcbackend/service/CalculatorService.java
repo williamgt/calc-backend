@@ -15,8 +15,13 @@ public class CalculatorService {
         return "Hello and welcome!";
     }
 
-    public double calculateExpression(String expression){
-        //TODO add logger stuff
-        return Calculations.calculate(expression);
+    public Calculations calculateExpression(String expression){
+        //TODO add logger stuff based on getters for c
+        Calculations c = Calculations.calculate(expression);
+        if(!c.getResult().matches("^[1-9]\\d*(\\.\\d+)?$")){
+            logger.warn("Something went wrong in service when calculating: " + c.getResult()); //TODO consider something else than letting getResult return the error message, it looks really ugly
+        }
+        logger.info("Calculated valid expression resulting in " + c.getResult());
+        return c;
     }
 }
