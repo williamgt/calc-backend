@@ -1,0 +1,22 @@
+Followed this to implements HTTPS for the spring boot server: https://www.tutorialspoint.com/spring_boot/spring_boot_enabling_https.htm
+
+**GENERATE KEY PAIR**
+C:\Dataingenior\Semester_4\Fullstack\Obliger\oblig4-oppg1\calc-backend\src\main\resources\certificate>"C:\Program Files\Java\jdk-11.0.8\bin\keytool" -genkeypair -alias tomcat -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+Enter keystore password: pass
+Keystore password is too short - must be at least 6 characters
+Enter keystore password: password
+Re-enter new password: password
+What is your first and last name?
+  [Unknown]:  william
+What is the name of your organizational unit?
+  [Unknown]:  NTNU
+What is the name of your organization?
+  [Unknown]:  NTNU
+What is the name of your City or Locality?
+  [Unknown]:  Trondheim
+What is the name of your State or Province?
+  [Unknown]:  Trondelag
+What is the two-letter country code for this unit?
+  [Unknown]:  NO
+Is CN=william, OU=NTNU, O=NTNU, L=Trondheim, ST=Trondelag, C=NO correct?
+  [no]:  y

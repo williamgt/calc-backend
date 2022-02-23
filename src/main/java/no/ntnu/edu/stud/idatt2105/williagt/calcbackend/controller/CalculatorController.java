@@ -31,12 +31,12 @@ public class CalculatorController {
         return this.service.getHelloMessage();
     }
 
-    @GetMapping("/calculate/{expression}")
+  /*  @GetMapping("/calculate/{expression}")
     public String calculate(@PathVariable("expression") String expression){
         return this.service.calculateExpression(expression).toString();
-    }
+    }*/
 
-    @GetMapping("/calculate/json/{expression}")
+    @GetMapping("/calculate/{expression}")
     public Calculations calculateTakeStringSendJSON(@PathVariable("expression") String expression){
         logger.info("User sent sent expression " + expression);
         return this.service.calculateExpression(expression);
