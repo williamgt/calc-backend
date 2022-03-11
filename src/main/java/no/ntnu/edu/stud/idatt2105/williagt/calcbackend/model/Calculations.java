@@ -4,11 +4,15 @@ import org.mariuszgromada.math.mxparser.*;
 public class Calculations {
     private String expression;
     private String result;
+    private long userId;
+
+    public Calculations(){}
 
     private Calculations(String expression, String result) {
         this.expression = expression;
         this.result = result;
     }
+
     public Calculations(String expression){
         Expression e = new Expression(expression);
         this.expression = expression;
@@ -34,6 +38,14 @@ public class Calculations {
 
     public String getResult() {
         return result;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     @Override
