@@ -44,7 +44,15 @@ public class Calculations {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setExpression(String expression) {
+        this.expression = expression;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public void setUserId(long userId) { //Remove method if you no longer want the ID to be seen in return object
         this.userId = userId;
     }
 

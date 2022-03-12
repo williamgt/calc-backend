@@ -3,9 +3,9 @@ package no.ntnu.edu.stud.idatt2105.williagt.calcbackend.model;
 import java.util.Objects;
 
 public class User {
+    private long id;
     private String fullName;
     private String email;
-    private long id;
 
     public User() {}
 
@@ -22,12 +22,20 @@ public class User {
         return email;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override
