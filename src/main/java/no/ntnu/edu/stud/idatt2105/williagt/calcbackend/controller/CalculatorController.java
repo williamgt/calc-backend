@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Receive requests from user and calls into the service class
+@CrossOrigin(origins = "*")
 @RestController
 public class CalculatorController {
     ObjectMapper mapper = new ObjectMapper(); //TODO is this allowed?
@@ -71,9 +72,19 @@ public class CalculatorController {
         }
     }
 
-    @GetMapping("/calculations/{userId}")
-    public List<Calculations> getCalculationsByUserId(@PathVariable("userId") int userId){
+    @GetMapping("/calculations-by-id/{user-id}")
+    public List<Calculations> getCalculationsByUserId(@PathVariable("user-id") int userId){
         return calcRepo.getAllACalculationsByUserId(userId);
+    }
+
+    @GetMapping("/calculations-by-email/{user-email}")
+    public List<Calculations> getCalculationsByUserId(@PathVariable("user-email") String userEmail){
+        User user = userRepo.findByMail(userEmail);
+        if(user == null){
+            logger.error("No user with mail '" + userEmail + "' is registered.");
+            return null;
+        }
+        return calcRepo.getAllACalculationsByUserId(user.getId());
     }
 
     @PostMapping("/calculations/add-no-user")

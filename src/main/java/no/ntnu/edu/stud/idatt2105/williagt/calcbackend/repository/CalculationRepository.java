@@ -15,7 +15,7 @@ public class CalculationRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<Calculations> getAllACalculationsByUserId(int userId){
+    public List<Calculations> getAllACalculationsByUserId(long userId){
         return jdbcTemplate.query("SELECT * FROM calculation WHERE userId=?",
                 BeanPropertyRowMapper.newInstance(Calculations.class), userId);
     }
