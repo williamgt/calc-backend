@@ -33,7 +33,18 @@ public class UserRepository {
         }
     }
 
-    public int registerUser(User user){
-        return jdbcTemplate.update("INSERT INTO user (email, fullName) VALUES (?, ?)", user.getEmail(), user.getFullName() );
+    public User findByUsernameAndPassword(String username, String password){
+        try{
+            User user = jdbcTemplate.queryForObject("SELECT * FROM user WHERE username=? AND password=?",
+                    BeanPropertyRowMapper.newInstance(User.class), username, password);
+            return user;
+        }catch (IncorrectResultSizeDataAccessException e){
+            return null;
+        }
+    }
+
+    public int registerUser(User user){ //TODO make user you cant add the same person twice!!!!!!!
+        return jdbcTemplate.update("INSERT INTO user (email, fullName, address, username, password, phone) VALUES (?, ?, ?, ?, ?, ?)",
+                user.getEmail(), user.getFullName(), user.getAddress(), user.getUsername(), user.getPassword(), user.getPhone() );
     }
 }

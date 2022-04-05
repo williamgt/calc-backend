@@ -17,7 +17,7 @@ public class CalculatorService {
 
     public Calculations calculateExpression(String expression){
         Calculations c = Calculations.calculate(expression);
-        if(!c.getResult().matches("^[1-9]\\d*(\\.\\d+)?$")){
+        if(!c.getResult().matches("^[0-9]\\d*(\\.\\d+)?$")){
             //TODO want to change logger directly under to warn instead of info
             logger.info("Something went wrong in service when calculating: " + c.getResult()); //TODO consider something else than letting getResult return the error message, it looks really ugly
         }else{

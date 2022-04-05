@@ -39,14 +39,13 @@ public class CalculatorController {
         return this.service.getHelloMessage();
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/calculate/{expression}")
     public Calculations calculateTakeStringSendJSON(@PathVariable("expression") String expression){
         logger.info("User sent sent expression " + expression);
         return this.service.calculateExpression(expression);
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/users-by-id/{id}")
     public User getUserById(@PathVariable("id") int id){
         User user = userRepo.findById(id);
         if(user == null) logger.error("No user in db with id " + id);
@@ -54,7 +53,7 @@ public class CalculatorController {
         return user;
     }
 
-    @GetMapping("/users/{email}")
+    @GetMapping("/users-by-email/{email}")
     public User getUserById(@PathVariable("email") String email){
         User user = userRepo.findByMail(email);
         if(user == null) logger.error("No user in db with email " + email);
@@ -72,13 +71,21 @@ public class CalculatorController {
         }
     }
 
+    @GetMapping("/users/login-request/{username}/{password}")
+    public User getUserByUsernameAndPassword(@PathVariable String username, @PathVariable String password){ //This user should only contain username and password
+        User returnUser = userRepo.findByUsernameAndPassword(username, password);
+        if(returnUser == null) logger.error("No such user in db");
+        else logger.info("Returning user");
+        return returnUser;
+    }
+
     @GetMapping("/calculations-by-id/{user-id}")
     public List<Calculations> getCalculationsByUserId(@PathVariable("user-id") int userId){
         return calcRepo.getAllACalculationsByUserId(userId);
     }
 
     @GetMapping("/calculations-by-email/{user-email}")
-    public List<Calculations> getCalculationsByUserId(@PathVariable("user-email") String userEmail){
+    public List<Calculations> getCalculationsByUserEmail(@PathVariable("user-email") String userEmail){
         User user = userRepo.findByMail(userEmail);
         if(user == null){
             logger.error("No user with mail '" + userEmail + "' is registered.");
@@ -136,3 +143,16 @@ public class CalculatorController {
     "result": "4",
     "userId": 1
 },*/
+
+/*
+
+    [
+            {
+            "fullName": "Hanne Banne",
+            "email": "hanne@mail.com"
+            },
+            {
+            "expression": "6+4",
+            "result": "10"
+            }
+            ]*/
